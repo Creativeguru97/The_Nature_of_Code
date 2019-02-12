@@ -19,13 +19,14 @@ void setup(){
 
 void draw(){
   background(255);
+  fill(100);
+  rect(0, height/2, width, height/2);
   
   /*Enhanced loop!!!
   For every Ball b in the array balls, do this to it*/
   for(Ball b : balls){
-  PVector gravity = new PVector(0,0.3);
+  PVector gravity = new PVector(0,0.1);
   gravity.mult(b.mass);
-  //Apply to PVector object "gravity"
   b.applyGravity(gravity);
   
   if(mousePressed){
@@ -33,17 +34,30 @@ void draw(){
     b.applyGravity(wind);
   }
   
-  //By this "get()", we gain the value's copy without messing it.
-  PVector friction = b.velocity.get();
-  friction.normalize();
-  //or, just like "float c = -0.01;"
-  friction.mult(-1);
-  float c = 0.02;
-  friction.mult(c);
-  b.applyGravity(friction);
+  ////Friction
+  //PVector friction = b.velocity.get();
+  //friction.normalize();
+  ////or, just like "float c = -0.01;"
+  //friction.mult(-1);
+  //float c = 0.02;
+  //friction.mult(c);
+  //b.applyGravity(friction);
+  
+  //Water or gas resistance
+  if(b.location.y >= height/2){
+      PVector Resistance = b.velocity.get();
+      Resistance.normalize();
+      Resistance.mult(-1);
+      float c2 = 0.1;
+      float speed = b.velocity.magSq();
+      //We gain squared value
+      
+      Resistance.mult(c2 * speed);
+      b.applyGravity(Resistance);   
+  }
   
   b.displayUmeda();
-  b.moveBalls();
-  b.checkBalls();
+  b.moveUmeda();
+  b.checkUmeda();
   }
 }

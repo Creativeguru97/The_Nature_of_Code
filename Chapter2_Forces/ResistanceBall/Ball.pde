@@ -3,11 +3,11 @@ class Ball{
   PVector location;
   PVector velocity;
   PVector acceleration;
-  float mass; // This time, this value affect the radius.
+  float mass;
+  
   
   Ball(){
-    
-    location = new PVector(random(25, width-25), height/2);
+    location = new PVector(random(25, width-25), 0);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     mass = random(1, 3);
@@ -21,10 +21,11 @@ class Ball{
   }
   
   void displayUmeda(){
-  ellipse(location.x, location.y, mass*20, mass*20);
+    fill(255);
+    ellipse(location.x, location.y, mass*20, mass*20);
   }
   
-  void moveBalls(){
+  void moveUmeda(){
     
     PVector mouse = new PVector(mouseX, mouseY);
     mouse.sub(location);
@@ -44,7 +45,7 @@ class Ball{
     velocity.limit(10);
   }
   
-  void checkBalls(){
+  void checkUmeda(){
    //Accelerate objectX
     if(location.x > width-mass*20/2){
       location.x = width-mass*20/2;
