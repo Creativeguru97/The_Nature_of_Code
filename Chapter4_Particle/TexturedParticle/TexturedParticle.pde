@@ -1,3 +1,5 @@
+PImage texture;
+
 ArrayList<Particle> particles;
 /*We learn
     add()
@@ -7,8 +9,9 @@ ArrayList<Particle> particles;
 */
 
 void setup(){
-  size(960,540);
+  size(960,540,P2D);
   particles = new ArrayList<Particle>();
+  texture = loadImage("texture01.png");
   
   //We actually put particles in the Array at here.
   //for(int i = 0; i < 10; i++){
@@ -19,11 +22,12 @@ void setup(){
 void draw(){
   background(0);
   frameRate(60);
+  blendMode(ADD);
   
   if(mousePressed){
   //If we write this below here, system create particles infinitely without remove()
-    for(int i = 0; i < 10; i++){
-      particles.add(new Particle(new PVector(float(mouseX), float(mouseY))));
+    for(int i = 0; i < 1; i++){
+      particles.add(new Particle(new PVector(float(mouseX), float(mouseY)), texture));
     }
   }
   

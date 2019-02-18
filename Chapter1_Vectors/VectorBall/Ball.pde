@@ -38,6 +38,7 @@ class Ball{
     velocity.add(acceleration);
     //like: location = location + velocity
     location.add(velocity);
+    //acceleration.mult(0);
     //x=x+Xspeed;
     //y=y+Yspeed;
     velocity.limit(10);

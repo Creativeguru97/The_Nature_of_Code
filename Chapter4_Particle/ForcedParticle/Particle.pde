@@ -7,13 +7,16 @@ class Particle{
   float R = 170;
   float G = 220;
   float B = 255;
-  float BlurValue = 0;
   
-  Particle(PVector l){
-    location = l.get();
-    velocity = new PVector(random(-1, 1), random(-2, 0));
-    acceleration = new PVector(0, 0.05);
+  Particle(){
+    location = new PVector(width/2, 50);
+    velocity = new PVector(random(-0.5,0.5), random(-1, 0));
+    acceleration = new PVector(0, 0);
     lifespan = 255;
+  }
+  
+  void applyGravity(PVector gravity){
+    acceleration.add(gravity);
   }
   
   void excute(){
@@ -21,25 +24,21 @@ class Particle{
     display();
   }
   
-  
   void fall(){
     velocity.add(acceleration);
     location.add(velocity);
+    acceleration.mult(0);
     lifespan -= lifespanOffset;
   }
 
   //float ColorROffset = map(R, 0, lifespan, 0, 255-R);
   void display(){
     stroke(R-30, G-30, lifespan-30, lifespan);
-    fill(R-30, G-30, lifespan-30, lifespan);
     
-    ellipse(location.x, location.y, random(3), random(3));
+    fill(R, G, B, lifespan);
+    ellipse(location.x, location.y, random(5), random(5));
     B -= lifespanOffset;
     R += lifespanOffset/3;
-    
-    //TOO HEAVY THIS EFFECT!!!
-    //float BlurValue = map(lifespanOffset, 0, 255, 0, 3);
-    //filter(BLUR, BlurValue);
   }
   
   boolean isDead(){

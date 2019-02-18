@@ -1,14 +1,25 @@
 class ParticleSystem{
   ArrayList<Particle> particles;
-  PVector origin;
   
-  ParticleSystem(PVector location){
-    origin = location;
+  ParticleSystem(){
     particles = new ArrayList<Particle>();
   }
   
   void addParticle(){
-    particles.add(new Particle(origin));
+    particles.add(new Particle());
+  }
+  
+  void applyGravity(PVector gravity){
+    for(Particle p : particles){
+      p.applyGravity(gravity);
+    }
+  }
+  
+  void applyRepeller(Repeller r){
+    for (Particle p : particles){
+      PVector force = r.repel(p);
+      p.applyGravity(force);
+    }
   }
   
   void run(){

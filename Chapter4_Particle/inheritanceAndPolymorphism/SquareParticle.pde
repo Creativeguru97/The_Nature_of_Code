@@ -10,7 +10,7 @@ class SquareParticle extends Particle{
     fill(R, G, B, lifespan);
     stroke(R-30, G-30, lifespan-30, lifespan);
     rectMode(CENTER);
-    rect(location.x, location.y, 10, 10);
+    rect(location.x, location.y, 20, 20);
     B -= lifespanOffset;
     R += lifespanOffset/3;
   }
