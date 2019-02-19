@@ -9,7 +9,7 @@ ArrayList<Particle> particles;
 */
 
 void setup(){
-  size(960,540,P2D);
+  size(1920,1080,P2D);
   particles = new ArrayList<Particle>();
   texture = loadImage("texture01.png");
   
