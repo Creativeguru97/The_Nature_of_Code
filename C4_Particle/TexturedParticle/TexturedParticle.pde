@@ -26,7 +26,7 @@ void draw(){
   
   if(mousePressed){
   //If we write this below here, system create particles infinitely without remove()
-    for(int i = 0; i < 1; i++){
+    for(int i = 0; i < 5; i++){
       particles.add(new Particle(new PVector(float(mouseX), float(mouseY)), texture));
     }
   }

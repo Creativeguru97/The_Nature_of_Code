@@ -3,7 +3,7 @@ class Particle{
   PVector velocity;
   PVector acceleration;
   float lifespan;
-  float lifespanOffset = 4.5;
+  float lifespanOffset = 3.5;
   float R = 200;
   float G = 200;
   float B = 255;
@@ -13,7 +13,7 @@ class Particle{
   Particle(PVector l, PImage texture_){
     location = l.get();
     velocity = new PVector(random(-1.2, 1.2), random(0, 1.5));
-    acceleration = new PVector(0, -0.15);
+    acceleration = new PVector(0, -0.10);
     lifespan = 255;
     texture = texture_;
   }
@@ -45,7 +45,7 @@ class Particle{
     tint(R, G, B, lifespan);
     G -= lifespanOffset/20;
     R -= lifespanOffset/3;
-    image(texture, location.x, location.y, 60, 60);
+    image(texture, location.x, location.y, 40, 40);
     
     //TOO HEAVY THIS EFFECT!!!
     //float BlurValue = map(lifespanOffset, 0, 255, 0, 3);
