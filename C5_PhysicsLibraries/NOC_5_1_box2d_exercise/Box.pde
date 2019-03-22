@@ -56,9 +56,9 @@ class Box  {
     translate(pos.x, pos.y);
     //set angular -a because y-axis in box 2d world point up.
     rotate(-a);
-    fill(127);
+    fill(200);
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(1);
     rectMode(CENTER);
     rect(0,0,w,h);
     popMatrix();

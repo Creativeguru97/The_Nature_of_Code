@@ -20,5 +20,4 @@ void draw(){
 
 void mousePressed(){
   systems.add(new ParticleSystem(new PVector(mouseX, mouseY)));
-  
 }

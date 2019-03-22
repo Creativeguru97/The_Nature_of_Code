@@ -46,4 +46,6 @@ void draw(){
   b.moveBalls();
   b.checkBalls();
   }
+  
+  //saveFrame("Output/Ball_####.png");
 }
