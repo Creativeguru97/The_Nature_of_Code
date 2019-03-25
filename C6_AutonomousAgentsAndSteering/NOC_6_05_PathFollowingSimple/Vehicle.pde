@@ -47,6 +47,7 @@ class Vehicle {
     PVector b = p.end;
 
     // Get the normal point to that line
+    //So we don't have to calcukate scalar projection
     PVector normalPoint = getNormalPoint(predictpos, a, b);
 
     // Find target point a little further ahead of normal
@@ -123,7 +124,7 @@ class Vehicle {
 
     // If the magnitude of desired equals 0, skip out of here
     // (We could optimize this to check if x and y are 0 to avoid mag() square root
-    if (desired.mag() == 0) return;
+    if (desired.mag() == 0) return; 
 
     // Normalize desired and scale to maximum speed
     desired.normalize();

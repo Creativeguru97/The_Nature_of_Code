@@ -15,8 +15,8 @@ class Path {
   Path() {
     // Arbitrary radius of 20
     radius = 20;
-    start = new PVector(0,height/3);
-    end = new PVector(width,2*height/3);
+    start = new PVector(100,height/3);
+    end = new PVector(width-100,2*height/3);
   }
 
   // Draw the path
