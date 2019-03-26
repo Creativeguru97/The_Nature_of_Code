@@ -40,11 +40,6 @@ void draw(){
         particles.remove(i);
       }
     }
-    
-  
-    
-    
-  
   
   //Sadly, with enhanced loop, we can't modify or manipulate these elements
   //for(Particle p : particles){
