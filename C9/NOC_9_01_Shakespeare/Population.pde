@@ -55,7 +55,6 @@ class Population {
     // a higher fitness = more entries to mating pool = more likely to be picked as a parent
     // a lower fitness = fewer entries to mating pool = less likely to be picked as a parent
     for (int i = 0; i < population.length; i++) {
-      
       float fitness = map(population[i].fitness,0,maxFitness,0,1);
       int n = int(fitness * 100);  // Arbitrary multiplier, we can also use monte carlo method
       for (int j = 0; j < n; j++) {              // and pick two random numbers
@@ -68,6 +67,7 @@ class Population {
   void generate() {
     // Refill the population with children from the mating pool
     for (int i = 0; i < population.length; i++) {
+      //Pick random two parents
       int a = int(random(matingPool.size()));
       int b = int(random(matingPool.size()));
       DNA partnerA = matingPool.get(a);

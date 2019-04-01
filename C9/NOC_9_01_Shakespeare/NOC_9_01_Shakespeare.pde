@@ -39,7 +39,7 @@ void setup() {
   size(640, 360);
   f = createFont("Courier", 32, true);
   target = "To be or not to be.";
-  popmax = 150;
+  popmax = 200;
   mutationRate = 0.01;
 
   // Create a populationation with a target phrase, mutation rate, and populationation max

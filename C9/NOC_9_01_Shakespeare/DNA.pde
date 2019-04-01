@@ -44,6 +44,7 @@ class DNA {
      
      //Calculate fitness score reffered as ##%
      fitness = (float)score / (float)target.length();
+     fitness = pow(fitness, 4); //Make the fitness function exponential.
   }
   
   // Crossover

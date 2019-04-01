@@ -40,7 +40,7 @@ void setup() {
 
 void draw() {
   background(255);
-
+  
   // Draw the start and target positions
   fill(0);
   ellipse(target.x,target.y,24,24);
