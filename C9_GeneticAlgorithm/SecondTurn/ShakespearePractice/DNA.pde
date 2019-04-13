@@ -24,7 +24,7 @@ class DNA{
       }
     }
     fitness = (float)score / (float)target.length(); //Fitness is the percentage correct
-    //println(fitness);
+    fitness = pow(fitness, 2); //Make the fitness function exponential.
   }
   
   DNA crossover(DNA partner){//The function receives one argument(DNA) and returns DNA
