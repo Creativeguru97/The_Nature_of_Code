@@ -32,7 +32,6 @@ void draw() {
   // Display the button
   button.display();
   button.rollover(mouseX,mouseY);
-
 }
 
 // If the button is clicked, evolve next generation
