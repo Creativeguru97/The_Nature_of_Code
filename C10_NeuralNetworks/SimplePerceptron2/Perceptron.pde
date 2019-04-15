@@ -8,10 +8,11 @@ int sign(float n){
 }
 
 class Perceptron{
-  float [] weights = new float[2];
-  float lr = 0.1;//Learning late
+  float [] weights;//Two inputs, and one bias weight
+  float lr = 0.15;//Learning late
   
-  Perceptron(){
+  Perceptron(int n){
+    weights = new float[3];
     //Initialize the weights randomly
     for (int i = 0; i < weights.length; i++){
        weights[i] = random(-1, 1);
@@ -34,5 +35,16 @@ class Perceptron{
     for(int i = 0; i < weights.length; i++){
       weights[i] += error * inputs[i] * lr;
     }
+  }
+  
+  float guessY(float x){
+    //float m = weights[1] / weights[0];
+    //float b = weights[2];
+    //return m * x + b;
+    float w0 = weights[0];
+    float w1 = weights[1];
+    float wb = weights[2];
+    
+    return -(wb/w1)*1 - (w0/w1)*x;
   }
 }

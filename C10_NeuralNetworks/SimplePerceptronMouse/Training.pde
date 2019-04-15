@@ -1,7 +1,6 @@
 class Point{
   float x;
   float y;
-  float bias;
   int label;
   
   Point(){

@@ -2,8 +2,6 @@ Perceptron p;
 
 Point[] points = new Point[100];
 
-int trainingIndex = 0;
-
 void setup(){
   size(400, 400);
   p = new Perceptron();
@@ -33,20 +31,19 @@ void draw(){
     int guess = p.guess(inputs);
     if(guess == target){
       fill(0, 255, 0);
+      noStroke();
     }else{
       fill(255, 0, 0);
     }
-    noStroke();
     ellipse(pt.x, pt.y, 4, 4);
   }
-  
-  //Training points one by one to visualize well
-  Point training = points[trainingIndex];
-  float[] inputs = {training.x, training.y};
-  int target = training.label;
-  p.train(inputs, target);
-  trainingIndex++;
-  if(trainingIndex == points.length){
-    trainingIndex = 0;
+}
+
+//To visualize training process well
+void mousePressed(){
+  for(Point pt: points){
+    float[] inputs = {pt.x, pt.y};
+    int target = pt.label;
+    p.train(inputs, target);
   }
 }
