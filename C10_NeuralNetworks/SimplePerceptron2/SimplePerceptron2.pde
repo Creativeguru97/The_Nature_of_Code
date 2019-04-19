@@ -27,7 +27,6 @@ void draw(){
   Point p4 = new Point(1, p.guessY(1));
   line(p3.pixelX(), p3.pixelY(), p4.pixelX(), p4.pixelY());
   
-  
   for(Point pt: points){
     pt.show();
   }
