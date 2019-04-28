@@ -1,18 +1,19 @@
 // var m = new Matrix(3, 2);
-//console.table(m.matrix);
+//console.table(m.data);
+//
 
 class Matrix{
   constructor(rows, cols){
 
     this.rows = rows;
     this.cols = cols;
-    this.matrix = [];
+    this.data = [];
 
     //Initialize value in Matrix
     for(var i = 0; i < this.rows; i++){
-      this.matrix[i] = [];
+      this.data[i] = [];
       for(var j = 0; j < this.cols; j++){
-        this.matrix[i][j] = 0;//Every simgle rows and cols location is a values 0
+        this.data[i][j] = 0;//Every simgle rows and cols location is a values 0
       }
     }
   }
@@ -20,7 +21,7 @@ class Matrix{
   randomize(){
     for(var i = 0; i < this.rows; i++){
       for(var j = 0; j < this.cols; j++){
-        this.matrix[i][j] = Math.floor(Math.random()*10);
+        this.data[i][j] = Math.floor(Math.random()*10);
       }
     }
   }
@@ -30,7 +31,7 @@ class Matrix{
 
     for(var i = 0; i < this.rows; i++){
       for(var j = 0; j < this.cols; j++){
-        result.matrix[j][i] = this.matrix[i][j];
+        result.data[j][i] = this.data[i][j];
       }
     }
     return result;
@@ -41,49 +42,66 @@ class Matrix{
     if(n instanceof Matrix){
       for(var i = 0; i < this.rows; i++){
         for(var j = 0; j < this.cols; j++){
-          this.matrix[i][j] += n.matrix[i][j];
+          this.data[i][j] += n.data[i][j];
         }
       }
     }else{
       for(var i = 0; i < this.rows; i++){
         for(var j = 0; j < this.cols; j++){
-          this.matrix[i][j] += n;
+          this.data[i][j] += n;
         }
       }
     }
   }
 
-  multiply(n){
-    if(n instanceof Matrix){
-      //Matrix product
-      if(this.cols !== n.rows){
-        console.log('Columns of A must match rows of B');
-        return undefined;
-      }
-      //Define every result value
-      let a = this;
-      let b = n;
-      let result = new Matrix(a.rows, b.cols);
 
-      for (let i = 0; i < result.rows; i++){
-        for (let j = 0; j < result.cols; j++){
-          //Dot product pf value in col
-          let sum = 0;
-          for(let k = 0; k < a.cols/* == b.rows*/; k++){
-            sum += a.matrix[i][k] * b.matrix[k][j];
-          }
-          result.matrix[i][j] = sum;
+static multiply(a, b){
+    //Matrix product
+    if(a.cols !== b.rows){
+      console.log('Columns of A must match rows of B');
+      return undefined;
+    }
+    //Define every result value
+    let result = new Matrix(a.rows, b.cols);
+    for (let i = 0; i < result.rows; i++){
+      for (let j = 0; j < result.cols; j++){
+        //Dot product pf value in col
+        let sum = 0;
+        for(let k = 0; k < a.cols/* == b.rows*/; k++){
+          sum += a.data[i][k] * b.data[k][j];
         }
+        result.data[i][j] = sum;
       }
-      return result;
-    }else{
+    }
+    // console.table(result.data);
+    return result;
+}
+
+  //Non static version
+  multiply(n){
+
       //Scalar product
       for(var i = 0; i < this.rows; i++){
         for(var j = 0; j < this.cols; j++){
-          this.matrix[i][j] *= n;
+          this.data[i][j] *= n;
         }
       }
     }
-  }
+
+    map(func){
+        //Apply a function to every element of matrix
+        //Programming languade like java is difficult to do this
+        for(var i = 0; i < this.rows; i++){
+          for(var j = 0; j < this.cols; j++){
+            //Look through every element of the matrix and take the value.
+            let val = this.data[i][j];
+            this.data[i][j] = func(val);//Additional : func(val, i, j);
+          }
+        }
+      }
+
+    print(){
+      console.table(this.data);
+    }
 
 }

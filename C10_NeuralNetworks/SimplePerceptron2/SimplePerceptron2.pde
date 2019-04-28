@@ -34,7 +34,7 @@ void draw(){
   for(Point pt: points){
     float[] inputs = {pt.x, pt.y, pt.bias};
     int target = pt.label;
-    //p.train(inputs, target);//Can learn in one moment !!!
+    //p.train(inputs, target);//Train all the point simultaneously !!!
     
     int guess = p.guess(inputs);
     if(guess == target){
