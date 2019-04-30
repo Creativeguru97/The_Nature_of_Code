@@ -21,7 +21,7 @@ class Matrix{
   randomize(){
     for(var i = 0; i < this.rows; i++){
       for(var j = 0; j < this.cols; j++){
-        this.data[i][j] = Math.floor(Math.random()*10);
+        this.data[i][j] = Math.floor(Math.random()*2-1);//We take a number between -1 to 1;
       }
     }
   }
