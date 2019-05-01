@@ -44,12 +44,12 @@ class Matrix{
     }
   }
 
-  transpose(){
-    let result = new Matrix(this.cols, this.rows);//Make blank frame of Matrix
+  static transpose(matrix){
+    let result = new Matrix(matrix.cols, matrix.rows);//Make blank frame of Matrix
 
-    for(var i = 0; i < this.rows; i++){
-      for(var j = 0; j < this.cols; j++){
-        result.data[j][i] = this.data[i][j];
+    for(var i = 0; i < matrix.rows; i++){
+      for(var j = 0; j < matrix.cols; j++){
+        result.data[j][i] = matrix.data[i][j];
       }
     }
     return result;
@@ -70,6 +70,17 @@ class Matrix{
         }
       }
     }
+  }
+
+  static subtract(a, b){
+    //Return a new Matrix object a - b
+    let result = new Matrix(a.rows, a.cols);
+    for(var i = 0; i < result.rows; i++){
+      for(var j = 0; j < result.cols; j++){
+        result.data[i][j] = a.data[i][j] - b.data[i][j];
+      }
+    }
+    return result;
   }
 
 
