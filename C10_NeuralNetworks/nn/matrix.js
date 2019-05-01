@@ -1,7 +1,6 @@
 // var m = new Matrix(3, 2);
 //console.table(m.data);
 //
-
 class Matrix{
   constructor(rows, cols){
 
@@ -16,6 +15,25 @@ class Matrix{
         this.data[i][j] = 0;//Every simgle rows and cols location is a values 0
       }
     }
+  }
+
+  static fromArray(array){//arr : rows
+    let m = new Matrix(array.length, 1);
+    for (let i = 0; i < array.length; i++){
+      m.data[i][0] = array[i];
+    }
+    return m;
+  }
+
+  //Take 2d Matrix and flatten it to 1d array
+  toArray(){//Doesn't need to be static
+    let array = [];
+    for(var i = 0; i < this.rows; i++){
+      for(var j = 0; j < this.cols; j++){
+        array.push(this.data[i][j]);
+      }
+    }
+    return array;
   }
 
   randomize(){
@@ -96,6 +114,8 @@ static multiply(a, b){
             //Look through every element of the matrix and take the value.
             let val = this.data[i][j];
             this.data[i][j] = func(val);//Additional : func(val, i, j);
+            /*This time, we take all weight sum(element) of Matrix
+              and throw in to sidmoid funciton.*/
           }
         }
       }
