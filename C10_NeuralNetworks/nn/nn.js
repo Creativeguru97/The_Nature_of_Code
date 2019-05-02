@@ -53,6 +53,6 @@ class NeuralNetwork{
     //Calculate hidden layer errors
     let weights_HO_tr = Matrix.transpose(this.weights_HO);
     let hidden_error = Matrix.multiply(weights_HO_tr, output_error);
-
+    
   }
 }
