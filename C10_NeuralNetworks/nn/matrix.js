@@ -108,7 +108,6 @@ static multiply(a, b){
 
   //Non static version
   multiply(n){
-
       //Scalar product
       for(var i = 0; i < this.rows; i++){
         for(var j = 0; j < this.cols; j++){
@@ -131,8 +130,23 @@ static multiply(a, b){
         }
       }
 
+      static map(matrix, func){
+        let result = new Matrix(matrix.rows, matrix.cols);
+        for(let i = 0; i < matrix.rows; i++){
+          for(let j = 0; j < matrix.cols; j++){
+            let val = matrix.data[i][j];
+            result.data[i][j] = func(val);
+          }
+        }
+        return result;
+      }
+
     print(){
       console.table(this.data);
     }
 
+}
+
+if(typeof module !== 'undefined'){
+  module.exports = Matrix;
 }
