@@ -52,47 +52,35 @@ class NeuralNetwork{
     let inputs = Matrix.fromArray(input_array);//Make input matrix from array
     let hidden = Matrix.multiply(this.weights_IH, inputs);//I * H
 
-    // print(this.weights_IH);
     hidden.add(this.bias_h);//I * H + b (= h)
-    //Activation function!
     hidden.map(sigmoid);
 
     //Generating the Output's outputs !!!
     let outputs = Matrix.multiply(this.weights_HO, hidden);//h * O
-
     outputs.add(this.bias_o);//h * O + b2
-    //Activation function!
     outputs.map(sigmoid);
-    // print(outputs);
+//----------------------------------------------------------
     //Backpropagation
     let targets = Matrix.fromArray(target_array);
-    /*Calculate the console.error
-    Error = targets(answer) - outputs*/
-    let output_errors = Matrix.subtract(targets, outputs);
-    // print(output_errors);
+    //Calculate the console.error
+    let output_errors = Matrix.subtract(targets, outputs);//Error = targets(answer) - outputs
     //Gradient Desent Calculation
-    // let gradient = outputs * (1 - outputs);
-    let gradients = Matrix.map(outputs, derivativeSigmoid);
-    // let gradients2 = Matrix.multiply(gradients, output_errors);
+    let gradients = Matrix.map(outputs, derivativeSigmoid);// let gradient = outputs * (1 - outputs);
     gradients.multiply(output_errors);
     gradients.multiply(this.learning_rate);
-    // print(gradients2);
 
     //Calculate delta weights
     let hiddenT = Matrix.transpose(hidden);
     let delta_weights_HO = Matrix.multiply(gradients, hiddenT);
+    this.weights_HO.add(delta_weights_HO);//Adjust by delta weights
+    this.bias_o.add(gradients);//Adjust the bias by its deltas (which is kust the calculated gradient)
 
-    //Adjust by delta weights
-    this.weights_HO.add(delta_weights_HO);
-    //Adjust the bias by its deltas (which is kust the calculated gradient)
-    this.bias_o.add(gradients);
 
     //Calculate hidden layer errors
     let weights_HO_tr = Matrix.transpose(this.weights_HO);
     let hidden_errors = Matrix.multiply(weights_HO_tr, output_errors);
     //Calculate hidden gradient descent
     let hidden_gradients = Matrix.map(hidden, derivativeSigmoid);
-    // let hidden_gradients2 = Matrix.multiply(gradients, output_errors);
     hidden_gradients.multiply(hidden_errors);
     hidden_gradients.multiply(this.learning_rate);
 
@@ -100,13 +88,8 @@ class NeuralNetwork{
     let inputsT = Matrix.transpose(inputs);
     let delta_weights_IH = Matrix.multiply(hidden_gradients, inputsT);
 
-    //Adjust by delta weights
-    this.weights_IH.add(delta_weights_IH);
-    //Adjust the bias by its deltas (which is kust the calculated gradient)
-    this.bias_h.add(hidden_gradients);
+    this.weights_IH.add(delta_weights_IH);//Adjust by delta weights
+    this.bias_h.add(hidden_gradients);//Adjust the bias by its deltas (which is kust the calculated gradient)
 
-    // outputs.print();
-    // targets.print();
-    // error.print();
   }
 }

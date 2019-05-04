@@ -108,13 +108,21 @@ static multiply(a, b){
 
   //Non static version
   multiply(n){
+    if(n instanceof Matrix){
       //Scalar product
+      for(var i = 0; i < this.rows; i++){
+        for(var j = 0; j < this.cols; j++){
+          this.data[i][j] *= n.data[i][j];
+        }
+      }
+    }else{
       for(var i = 0; i < this.rows; i++){
         for(var j = 0; j < this.cols; j++){
           this.data[i][j] *= n;
         }
       }
     }
+  }
 
     map(func){
         //Apply a function to every element of matrix
