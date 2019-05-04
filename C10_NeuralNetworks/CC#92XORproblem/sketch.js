@@ -44,7 +44,7 @@ function draw(){
   let pixCols = width / resolution;
   for(let i = 0; i < pixCols; i++){
     for(let j = 0; j < pixRows; j++){
-      let x0 = i / pixCols;
+      let x0 = i / pixCols;//Get a value from 0 to 1
       let x1 = j / pixRows;
       let inputs = [x0, x1];
       let y = nn.feedforward(inputs);
