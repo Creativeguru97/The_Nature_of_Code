@@ -21,7 +21,7 @@ let training_data = [{
 
 function setup(){
   createCanvas(400, 400);
-  nn = new NeuralNetwork(2, 6, 1);//We can set arbitrary number of hidden node
+  nn = new NeuralNetwork(2, 12, 1);//We can set arbitrary number of hidden node
 
   //Creates a slider <input></input> element in the DOM
   //(min val, max val, default val, step size of slider);
