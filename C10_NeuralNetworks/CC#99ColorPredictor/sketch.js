@@ -14,6 +14,11 @@ function setup(){
   createCanvas(640, 360);
   noLoop();//Only one time go through draw loop
   nn = new NeuralNetwork(3, 8, 2);//In this case,  we have to declare nn before pickColor
+  //hidden : 24 : 14
+  //12:8s
+  //8: 6s
+  //6: 5s
+
   nn.learningRate(0.05);
   for(let i = 0; i < 1000000; i++){
     let r = random(255);

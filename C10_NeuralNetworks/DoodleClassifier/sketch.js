@@ -28,5 +28,4 @@ function setup(){
   console.log(nn.feedforward([0, 1]));
   console.log(nn.feedforward([1, 1]));
   console.log(nn.feedforward([0, 0]));
-
 }
