@@ -29,7 +29,7 @@
     
   }
   img.updatePixels();
-  int x = 28 * (n % 10);
+  int x = 28 * (n % 10);//n % 10 : going to be the column number
   int y = 28 * (n / 10);
   image(img, x, y);
   }
