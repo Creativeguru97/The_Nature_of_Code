@@ -13,8 +13,10 @@ function pickColor(){
 function setup(){
   createCanvas(640, 360);
   noLoop();//Only one time go through draw loop
-  nn = new NeuralNetwork(3, 8, 2);//In this case,  we have to declare nn before pickColor
-  //hidden : 24 : 14
+  nn = new NeuralNetwork(3, 48, 2);//In this case,  we have to declare nn before pickColor
+  //hidden node : 48 : 28s
+  //36 : 23s
+  //24 : 14s
   //12:8s
   //8: 6s
   //6: 5s
