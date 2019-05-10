@@ -106,7 +106,7 @@ function setup(){
   training = training.concat(cats.training);
   training = training.concat(trains.training);
   training = training.concat(rainbows.training);
-  console.log(training);
+  // console.log(training);
 
   let testing = [];
   testing = testing.concat(cats.testing);
