@@ -1,5 +1,5 @@
 const len = 784;//cannot be reassigned
-const total_data = 1000;
+const total_data = 3000;
 
 //Make labels
 const CAT = 0;
@@ -18,9 +18,9 @@ let rainbows = {};
 let nn;
 
 function preload(){
-  cats_data = loadBytes('data/cat1000.bin');
-  trains_data = loadBytes('data/train1000.bin');
-  rainbows_data = loadBytes('data/rainbow1000.bin');
+  cats_data = loadBytes('data/cat3000.bin');
+  trains_data = loadBytes('data/train3000.bin');
+  rainbows_data = loadBytes('data/rainbow3000.bin');
 }
 
 function prepareData(category, data, label){
@@ -29,7 +29,7 @@ function prepareData(category, data, label){
   category.testing = [];
   for(let i = 0; i < total_data; i++){
     let offset = i * len;
-    let threshold = floor(0.8 * total_data);
+    let threshold = floor(0.9 * total_data);
     if(i < threshold){
       //800 of data going into training
       category.training[i] = data.bytes.subarray(offset, offset + len);//subdivide each image's vals
@@ -52,7 +52,8 @@ function trainEpoch(training){
   // for(let j = 0; j < 5; j++){
     for(let i = 0; i < training.length; i++){
       let data = training[i];
-      let inputs = data.map(x => x / 255.0);//JavaScript syntax
+      // let inputs = Array.from(data).map(x => x / 255);//JavaScript syntax
+      let inputs = data.map(x => x / 255);//JavaScript syntax
       let label = training[i].label;
       let targets = [0, 0, 0];
       targets[label] = 1;
@@ -69,7 +70,9 @@ function testAll(testing){
   let correct = 0;
   for(let i = 0; i < testing.length; i++){
     let data = testing[i];
-    let inputs = data.map(x => x / 255.0);//JavaScript syntax
+    // let inputs = Array.from(data).map(x => x / 255);//JavaScript syntax
+    let inputs = data.map(x => x / 255);//JavaScript syntax
+    // console.log(inputs);
     let label = testing[i].label;
     let guess = nn.feedforward(inputs);
 
@@ -92,6 +95,7 @@ function testAll(testing){
 function setup(){
   createCanvas(280, 280);
   background(0);
+  // background(255);
 
   //Preparing the data
   prepareData(cats, cats_data, CAT);//Put label at last
@@ -113,12 +117,60 @@ function setup(){
   testing = testing.concat(trains.testing);
   testing = testing.concat(rainbows.testing);
 
-  for(let i = 1; i < 11; i++){
-  trainEpoch(training);
-  console.log("Epoch: "+ i);
-  let percent = testAll(testing);
-  console.log(percent +"% correct!!!");
-}
+  let trainButton = select('#train');
+  let epochCounter = 0;
+  trainButton.mousePressed(function(){
+    trainEpoch(training);
+    epochCounter++;
+    console.log("Epoch: "+epochCounter);
+  });
+
+
+  let testButton = select('#test');
+  testButton.mousePressed(function(){
+    let percent = testAll(testing);
+    console.log(percent +"% correct!!!");
+  });
+
+  let guessButton = select('#guess');
+  guessButton.mousePressed(function(){
+    let inputs = [];
+    /*p5.js function, grab all pixs
+     in canvas and makes into p5 image object*/
+    let img = get();
+    img.resize(28, 28);
+    // console.log(img);
+    img.loadPixels();
+    for(let i = 0; i < len; i++){//len : 784
+      let bright = img.pixels[i*4];//Only take braightness value
+      inputs[i] = bright / 255.0; //Normalize
+    }
+    // console.log(inputs);
+    let guess = nn.feedforward(inputs);
+    let m = max(guess);
+    let classification = guess.indexOf(m);
+    if(classification === CAT){
+      console.log("Cat");
+    }else if(classification === TRAIN){
+      console.log("Train");
+    }else if(classification === RAINBOW){
+      console.log("Rainbow");
+    }
+    // image(img, 0, 0);
+
+  });
+
+  let clearButton = select('#clearAll');
+  clearButton.mousePressed(function(){
+    background(0);
+  });
+
+//   for(let i = 1; i < 11; i++){
+//   trainEpoch(training);
+//   console.log("Epoch: "+ i);
+//   let percent = testAll(testing);
+//   console.log(percent +"% correct!!!");
+// }
   // let percent = testAll(testing);
   // console.log(percent +"% correct!!!");
 
@@ -144,5 +196,9 @@ function setup(){
 }
 
 function draw(){
-
+  strokeWeight(8);
+  stroke(255);
+  if(mouseIsPressed){//p5.js version. In Processing, "mousePressed"
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
 }

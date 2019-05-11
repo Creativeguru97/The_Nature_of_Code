@@ -9,7 +9,7 @@
   //float total = (data.length-80)/784;
   //println(total);
   
-  int total = 1000;
+  int total = 3000;
   
   byte[] outdata = new byte[total * 784];
   int outindex = 0;
@@ -35,6 +35,6 @@
   }
   
   //Save compressed bin file of that array of bytes to a binary
-  //saveBytes("cat1000.bin", outdata);
-  //saveBytes("rainbow1000.bin", outdata);
-  saveBytes("train1000.bin", outdata);
+  //saveBytes("cat3000.bin", outdata);
+  //saveBytes("rainbow3000.bin", outdata);
+  saveBytes("train3000.bin", outdata);
