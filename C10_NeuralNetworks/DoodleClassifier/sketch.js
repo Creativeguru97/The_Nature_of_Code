@@ -24,7 +24,7 @@ function preload(){
 }
 
 function prepareData(category, data, label){
-  //Make objects inside cata object
+  //Make objects inside cat object
   category.training = [];
   category.testing = [];
   for(let i = 0; i < total_data; i++){
@@ -59,10 +59,10 @@ function trainEpoch(training){
       targets[label] = 1;
 
       nn.train(inputs, targets);
-      // console.log(inputs);
+
     }
    // }
-  // console.log(training.length);
+
 }
 
 function testAll(testing){
@@ -189,7 +189,7 @@ function setup(){
   //   }
   //   img.updatePixels();
   //   let x = (n % 10) * 28;
-  //   let y = floor(n / 10) * 28;//fllor : because JS gives floating number default
+  //   let y = floor(n / 10) * 28;//floor : because JS gives floating number default
   //   image(img, x, y);//Actual display the pixels
   //
   // }
