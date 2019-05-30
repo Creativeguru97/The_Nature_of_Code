@@ -192,6 +192,7 @@ function setup(){
 }
 
 function draw(){
+
   strokeWeight(8);
   stroke(255);
   if(mouseIsPressed){//p5.js version. In Processing, "mousePressed"
