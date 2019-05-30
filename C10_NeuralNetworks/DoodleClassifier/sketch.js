@@ -43,7 +43,6 @@ function prepareData(category, data, label){
   }
 }
 
-
 function trainEpoch(training){
   shuffle(training, true); //p5.js function
 
@@ -59,10 +58,8 @@ function trainEpoch(training){
       targets[label] = 1;
 
       nn.train(inputs, targets);
-
     }
    // }
-
 }
 
 function testAll(testing){
@@ -124,7 +121,6 @@ function setup(){
     epochCounter++;
     console.log("Epoch: "+epochCounter);
   });
-
 
   let testButton = select('#test');
   testButton.mousePressed(function(){
