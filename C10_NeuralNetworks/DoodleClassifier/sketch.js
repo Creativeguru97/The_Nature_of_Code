@@ -141,6 +141,7 @@ function setup(){
       let bright = img.pixels[i*4];//Only take braightness value
       inputs[i] = bright / 255.0; //Normalize
     }
+    // print(inputs);
     // console.log(inputs);
     let guess = nn.feedforward(inputs);
     let m = max(guess);
