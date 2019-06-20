@@ -110,7 +110,7 @@ function setup(){
   // console.log(training);
 
   let testing = [];
-  testing = testing.concat(cats.testing);
+  testing = testing.concat(cats.testing);//Merge two arrays
   testing = testing.concat(trains.testing);
   testing = testing.concat(rainbows.testing);
 

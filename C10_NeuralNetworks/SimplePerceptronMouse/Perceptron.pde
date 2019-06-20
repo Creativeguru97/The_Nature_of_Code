@@ -18,7 +18,7 @@ class Perceptron{
     }
   }
   
-  int guess(float[] inputs){//I have to understand this grammer
+  int guess(float[] inputs){
     float sum = 0;
     for(int i = 0; i < weights.length; i++){
       sum += inputs[i] * weights[i];
