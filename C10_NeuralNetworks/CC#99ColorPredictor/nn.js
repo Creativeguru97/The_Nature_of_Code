@@ -47,6 +47,7 @@ class NeuralNetwork{
     output.map(sigmoid);
     //Sending it back to the caller
     return output.toArray();
+    // console.log(output);
   }
 
   train(input_array, target_array){

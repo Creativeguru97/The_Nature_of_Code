@@ -32,14 +32,14 @@ class Ball{
   
   void moveUmeda(){
     
-    PVector mouse = new PVector(mouseX, mouseY);
-    mouse.sub(location);
+    //PVector mouse = new PVector(mouseX, mouseY);
+    //mouse.sub(location);
     
-    /*By this setMag();, we restrict the amount(scale) of acceleration*/
-    /*if setMag(0.5);, acceleration increase 0.5 every frame*/
-    mouse.setMag(0.5);
-    //acceleration = mouse;
-    //acceleration = PVector.random2D();
+    ///*By this setMag();, we restrict the amount(scale) of acceleration*/
+    ///*if setMag(0.5);, acceleration increase 0.5 every frame*/
+    //mouse.setMag(0.5);
+    ////acceleration = mouse;
+    ////acceleration = PVector.random2D();
 
     velocity.add(acceleration);
     //like: location = location + velocity

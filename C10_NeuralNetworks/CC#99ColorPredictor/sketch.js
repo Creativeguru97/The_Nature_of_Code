@@ -22,7 +22,7 @@ function setup(){
   //6: 5s
 
   nn.learningRate(0.05);
-  for(let i = 0; i < 1000000; i++){
+  for(let i = 0; i < 50000; i++){
     let r = random(255);
     let g = random(255);
     let b = random(255);
@@ -78,11 +78,12 @@ function draw(){
 
 
 function colorPredictor(r,g,b){
-  console.log(r+g+b);
+  // console.log(r+g+b);
   let inputs = [r/255, g/255, b/255];
   let outputs = nn.feedforward(inputs);
-  // console.log(inputs);
-  // console.log(outputs);
+  console.log("Input: "+[r+",  "+g+",  "+b]);
+  console.log("Output: "+outputs[0]+",  "+outputs[1]);
+  console.log("------------------------------");
 
 
   if(outputs[0] > outputs[1]){
