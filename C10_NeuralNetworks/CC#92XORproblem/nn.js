@@ -50,7 +50,6 @@ class NeuralNetwork{
   }
 
   train(input_array, target_array){
-
     //Feedforward
     //Generating the Hidden outputs !!!
     let inputs = Matrix.fromArray(input_array);//Make input matrix from array
